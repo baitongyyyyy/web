@@ -6,7 +6,6 @@ export default function Register() {
   const [form] = Form.useForm();
 
   const onFinish = async (values: any) => {
-    console.log("values:", values);
     if (values.password !== values.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
       return;
