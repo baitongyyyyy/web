@@ -1,11 +1,14 @@
 import { Card, Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 import http  from "../api/http";
+import { useState } from "react";
 
 export default function Register() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: any) => {
+    setLoading(true);
     if (values.password !== values.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
       return;
@@ -16,6 +19,9 @@ export default function Register() {
         window.location.href = "/";
     } catch (error) {
       alert("สมัครสมาชิกไม่สำเร็จ");
+    }
+    finally {
+        setLoading(false);
     }
   }
 
@@ -41,7 +47,7 @@ export default function Register() {
             <Input.Password />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" loading={loading} block>
               สมัครสมาชิก
             </Button>
           </Form.Item>
