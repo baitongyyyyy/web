@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "https://localhost:7207",
+  baseURL: "https://loginapi-z1y5.onrender.com",
 });
 
 http.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-//   console.log('token:', token);
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
