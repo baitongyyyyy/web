@@ -24,7 +24,7 @@ export default function Login() {
   return (
     <>
     <div className="min-h-screen flex items-center justify-center">
-      <Card title="IT 02-1" style={{ width: 360 }}>
+      <Card title="Login" style={{ width: 360 }}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item name="username" label="User" rules={[{ required: true }]}>
             <Input />

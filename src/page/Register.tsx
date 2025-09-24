@@ -1,19 +1,21 @@
 import { Card, Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
+import http  from "../api/http";
 
 export default function Register() {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log("values:", values);
     if (values.password !== values.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
       return;
     }
     try {
-      // call api register
-      alert("สมัครสมาชิกสำเร็จ");
-      form.resetFields();
+        const { data } = await http.post("/api/auth/register", values);
+        alert("สมัครสมาชิกสำเร็จ");
+        // console.log("data:", data);
+        window.location.href = "/";
     } catch (error) {
       alert("สมัครสมาชิกไม่สำเร็จ");
     }
@@ -21,7 +23,7 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <Card title="IT 02-2" style={{ width: 380 }}>
+      <Card title="Register" style={{ width: 380 }}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item name="username" label="User" rules={[{ required: true }]}>
             <Input />
