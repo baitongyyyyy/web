@@ -12,9 +12,8 @@ export default function Register() {
       return;
     }
     try {
-        const { data } = await http.post("/api/auth/register", values);
+        await http.post("/api/auth/register", values);
         alert("สมัครสมาชิกสำเร็จ");
-        // console.log("data:", data);
         window.location.href = "/";
     } catch (error) {
       alert("สมัครสมาชิกไม่สำเร็จ");
